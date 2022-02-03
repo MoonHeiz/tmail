@@ -2,7 +2,7 @@ import { IAccount } from '../interfaces/IAccount';
 import { IAction } from '../interfaces/IAction';
 import { ActionType } from './actionType';
 
-export const setLoader = (loader: boolean): IAction<boolean> => ({ type: ActionType.loader, payload: loader });
+export const setLoader = (loading: boolean): IAction<boolean> => ({ type: ActionType.loading, payload: loading });
 
 export const setAccount = (account: IAccount): IAction<IAccount> => ({
   type: ActionType.changeAccount,

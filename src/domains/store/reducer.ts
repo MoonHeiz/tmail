@@ -3,14 +3,14 @@ import { IStorage } from '../interfaces/IStorage';
 import { ActionType } from './actionType';
 
 const initialState: IStorage = {
-  loader: true,
+  loading: true,
   account: null,
 };
 
 export const reducer = (state = initialState, action: IAction<any>) => {
   switch (action.type) {
-    case ActionType.loader:
-      return { ...state, loader: action.payload };
+    case ActionType.loading:
+      return { ...state, loading: action.payload };
     case ActionType.changeAccount:
       return { ...state, account: action.payload };
     case ActionType.clearAccount:

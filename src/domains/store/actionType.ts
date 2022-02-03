@@ -1,5 +1,5 @@
 export enum ActionType {
-  loader,
+  loading,
   changeAccount,
   clearAccount,
 }

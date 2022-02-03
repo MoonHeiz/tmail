@@ -11,14 +11,14 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color:#2f3136;
   }
   
   button {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     border: none;
     cursor:pointer;
   }

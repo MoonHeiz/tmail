@@ -1,6 +1,6 @@
 import { IAccount } from './IAccount';
 
 export interface IStorage {
-  loader: boolean;
+  loading: boolean;
   account: IAccount | null;
 }

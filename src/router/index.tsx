@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Header } from '../domains/components/Header';
+import { Header } from '../domains/components/Header/Header';
 
 export const AppRouter = () => {
   return (

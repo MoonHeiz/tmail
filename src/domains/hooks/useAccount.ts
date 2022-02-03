@@ -4,6 +4,7 @@ import { IAccount, IAuthAccount } from '../interfaces/IAccount';
 import { clearAccount, setAccount } from '../store/action';
 import { generateHash } from '../../utils/helpers';
 import { loadFromStorage, saveToLocalStorage } from '../../utils/localStorage';
+import { LOCAL_STORAGE_ACCOUNT_KEY } from '../constants';
 
 export const useAccount = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ export const useAccount = () => {
   };
 
   const refreshAccountFromCache = async () => {
-    const cachedAccount = loadFromStorage<IAccount>('user');
+    const cachedAccount = loadFromStorage<IAccount>(LOCAL_STORAGE_ACCOUNT_KEY);
     if (cachedAccount) {
       const validated = await validate(cachedAccount);
       if (validated) {
@@ -35,7 +36,7 @@ export const useAccount = () => {
     if (customRegisterResponse.data) {
       const validated = await validate({ ...customRegisterResponse.data, address, password });
       if (validated) {
-        saveToLocalStorage<IAccount>('user', validated);
+        saveToLocalStorage<IAccount>(LOCAL_STORAGE_ACCOUNT_KEY, validated);
         dispatch(setAccount(validated));
         return validated;
       }
