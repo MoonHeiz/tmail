@@ -3,7 +3,7 @@ interface IResponse<T> {
   status: number;
 }
 
-const responseConverter = <T>(status: number, data: any): IResponse<T> => {
+const responseConverter = <T>(status: number, data: T): IResponse<T> => {
   if (status < 200 && status > 206) {
     return {
       data: null,
@@ -25,9 +25,9 @@ export const postRequest = async <T>(url: string, body: any, token?: string): Pr
     body: JSON.stringify(body),
   });
 
-  const data = response.json();
+  const data = (await response.json()) as T;
 
-  return responseConverter(response.status, data);
+  return responseConverter<T>(response.status, data);
 };
 
 export const getRequest = async <T>(url: string, token?: string): Promise<IResponse<T>> => {
@@ -39,9 +39,9 @@ export const getRequest = async <T>(url: string, token?: string): Promise<IRespo
     },
   });
 
-  const data = response.json();
+  const data = (await response.json()) as T;
 
-  return responseConverter(response.status, data);
+  return responseConverter<T>(response.status, data);
 };
 
 export const deleteRequest = async <T>(url: string, id: string, token: string): Promise<IResponse<T>> => {
@@ -54,7 +54,14 @@ export const deleteRequest = async <T>(url: string, id: string, token: string): 
     },
   });
 
-  const data = response.json();
+  const data = (await response.json()) as T;
 
-  return responseConverter(response.status, data);
+  return responseConverter<T>(response.status, data);
+};
+
+export const generateHash = (length: number = 5) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  return Array.apply(0, Array(length))
+    .map(() => alphabet.charAt(Math.floor(Math.random() * alphabet.length)))
+    .join('');
 };

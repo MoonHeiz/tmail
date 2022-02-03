@@ -15,3 +15,11 @@ export const saveToLocalStorage = <T>(key: string, data: T) => {
     console.log(`Got error on saving data to local storage: ${err}`);
   }
 };
+
+export const clearLocalStorage = (key?: string) => {
+  if (key) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.clear();
+  }
+};
