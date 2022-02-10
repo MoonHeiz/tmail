@@ -16,6 +16,14 @@ export const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     background-color:#2f3136;
   }
+
+  #root{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-content: stretch;
+    height: 100vh;
+  }
   
   button {
     font-family: 'Ubuntu', sans-serif;
@@ -37,5 +45,9 @@ export const GlobalStyles = createGlobalStyle`
   input:focus-visible,
   button:focus-visible{
     outline: 2px dotted #5865f2;
+  }
+
+  ::selection {
+    background-color: #5865f2a3;
   }
 `;

@@ -1,7 +1,7 @@
 import { CSC } from '../../../styles/common';
-import { APP_NAME } from '../../constants';
 import { useAppSelector } from '../../hooks/useRedux';
 import { Email } from '../Email/Email';
+import { Logo } from '../Logo/Logo';
 import { MiniAccount } from '../MiniAccount/MiniAccount';
 import { SwitchLanguage } from '../SwitchLanguage/SwitchLanguage';
 import { WithLoader } from '../WithLoader/WithLoader';
@@ -14,11 +14,7 @@ export const Header = () => {
     <S.Header>
       <CSC.AppContainer>
         <S.Container>
-          <S.Logo to="/">
-            <S.LogoIcon />
-            <S.SiteName>{APP_NAME}</S.SiteName>
-          </S.Logo>
-          {/* <Email /> */}
+          <Logo />
           <WithLoader Component={Email} skeletonType="row" loading={loading} />
           <S.Controls>
             <SwitchLanguage />

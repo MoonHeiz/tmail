@@ -1,14 +1,14 @@
 import { useFetch } from './useFetch';
 import { useAppDispatch } from './useRedux';
 import { IAccount, IAuthAccount } from '../interfaces/IAccount';
-import { clearAccount, setAccount } from '../store/action';
+import { clearAccount, setAccount, setLoader, setMessages } from '../store/action';
 import { generateHash } from '../../utils/helpers';
-import { loadFromStorage, saveToLocalStorage } from '../../utils/localStorage';
+import { clearLocalStorage, loadFromStorage, saveToLocalStorage } from '../../utils/localStorage';
 import { LOCAL_STORAGE_ACCOUNT_KEY } from '../constants';
 
 export const useAccount = () => {
   const dispatch = useAppDispatch();
-  const { login, getDomains, register } = useFetch();
+  const { login, getDomains, register, getMessages } = useFetch();
 
   const validate = async (account: IAuthAccount): Promise<IAccount | null> => {
     const response = await login(account.address, account.password);
@@ -58,9 +58,20 @@ export const useAccount = () => {
     return null;
   };
 
+  const refreshMessages = async (account: IAccount) => {
+    const messagesResponse = await getMessages(account.token);
+    if (Array.isArray(messagesResponse.data)) {
+      dispatch(setMessages(messagesResponse.data));
+      return messagesResponse.data;
+    }
+    return null;
+  };
+
   const exit = () => {
+    dispatch(setLoader(true));
+    clearLocalStorage(LOCAL_STORAGE_ACCOUNT_KEY);
     dispatch(clearAccount());
   };
 
-  return { refreshAccountFromCache, fastRegister, exit };
+  return { refreshAccountFromCache, fastRegister, refreshMessages, exit };
 };

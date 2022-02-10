@@ -9,8 +9,9 @@ interface IFlexContainerProps {
 
 export const AppContainer = styled.div`
   padding: 0 100px;
+  height: 100%;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     padding: 0 25px;
   }
 `;

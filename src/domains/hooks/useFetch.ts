@@ -2,6 +2,7 @@ import { deleteRequest, getRequest, postRequest } from '../../utils/helpers';
 import { API } from '../constants';
 import { IIntermediateAccount, IValidateAccount } from '../interfaces/IAccount';
 import { IDomain } from '../interfaces/IDomain';
+import { IMessage } from '../interfaces/IMessage';
 
 export const useFetch = () => {
   const getDomains = (page: number = 1) => {
@@ -16,6 +17,10 @@ export const useFetch = () => {
     return postRequest<IIntermediateAccount>(`${API}/accounts`, { address, password });
   };
 
+  const getMessages = (token: string) => {
+    return getRequest<IMessage[]>(`${API}/messages`, token);
+  };
+
   // --------
 
   const me = (token: string) => {
@@ -24,10 +29,6 @@ export const useFetch = () => {
 
   const deleteMe = (id: string, token: string) => {
     return deleteRequest(`${API}/accounts`, id, token);
-  };
-
-  const getMessages = (token: string) => {
-    return getRequest(`${API}/messages`, token);
   };
 
   const getMessage = (messageId: string, token: string) => {

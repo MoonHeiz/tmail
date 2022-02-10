@@ -7,15 +7,18 @@ import { useEffect } from 'react';
 import { useAccount } from './domains/hooks/useAccount';
 import { useAppDispatch } from './domains/hooks/useRedux';
 import { setLoader } from './domains/store/action';
+import { Modal } from './domains/components/Modal/Modal';
 
 export const App = () => {
-  const { refreshAccountFromCache, fastRegister } = useAccount();
+  const { refreshAccountFromCache, fastRegister, refreshMessages } = useAccount();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
       const hasCachedAccount = await refreshAccountFromCache();
-      if (!hasCachedAccount) {
+      if (hasCachedAccount) {
+        refreshMessages(hasCachedAccount);
+      } else {
         await fastRegister();
       }
       dispatch(setLoader(false));
@@ -26,6 +29,7 @@ export const App = () => {
     <Provider store={store}>
       <AppRouter />
       <GlobalStyles />
+      <Modal />
     </Provider>
   );
 };
