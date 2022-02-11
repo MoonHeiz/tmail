@@ -4,6 +4,8 @@ import rightArrowIcon from '../../../assets/right-arrow.svg';
 
 export const Messages = styled.div`
   flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const MessagesInbox = styled.h2`
@@ -42,7 +44,7 @@ export const Message = styled(Link)`
 
 export const Inbox = styled.h2`
   font-size: 28px;
-  color: #fff;
+  color: #dcddde;
   margin: 10px 0 20px;
 `;
 
@@ -79,7 +81,7 @@ export const MailInfo = styled.div`
 export const MailContentPreview = styled(SenderInfo)``;
 
 export const Subject = styled.div`
-  color: #fff;
+  color: #dcddde;
   white-space: nowrap;
 `;
 

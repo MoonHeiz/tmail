@@ -14,7 +14,7 @@ export const Outside = styled.div`
 
 export const ContentContainer = styled.div`
   position: relative;
-  background-color: #fff;
+  background-color: #dcddde;
   border-radius: 10px;
   box-shadow: 0 2px 5px 1px rgb(0 0 0 / 21%);
   min-width: 350px;

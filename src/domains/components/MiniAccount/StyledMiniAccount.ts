@@ -14,7 +14,7 @@ export const DropdownWrapper = styled.div`
 export const Dropdown = styled.ul`
   padding: 10px 0;
   list-style: none;
-  color: #fff;
+  color: #dcddde;
 `;
 
 export const MenuItem = styled.li`
@@ -23,12 +23,13 @@ export const MenuItem = styled.li`
 
   &:hover {
     background-color: #2a2d32;
+    color: #fff;
   }
 `;
 
 export const AccountFakeImage = styled.img`
   border-radius: 100%;
-  color: #fff;
+  color: #dcddde;
   height: 100%;
   width: 100%;
   background-color: #3b3b3b;

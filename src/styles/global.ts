@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
     align-content: stretch;
     height: 100vh;
+    overflow: hidden;
   }
   
   button {
@@ -49,5 +50,26 @@ export const GlobalStyles = createGlobalStyle`
 
   ::selection {
     background-color: #5865f2a3;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background-color: #0c0c0c;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #0c0c0c;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #50535a;
   }
 `;

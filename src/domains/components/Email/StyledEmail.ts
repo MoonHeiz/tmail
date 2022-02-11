@@ -27,7 +27,7 @@ export const EmailField = styled.input.attrs({ type: 'email', readonly: 'readonl
   background-color: transparent;
   border: none;
   color: transparent;
-  text-shadow: 0 0 0 #fff;
+  text-shadow: 0 0 0 #dcddde;
   padding: 0;
 
   &:focus {

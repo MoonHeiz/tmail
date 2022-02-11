@@ -50,19 +50,21 @@ export const useAccount = () => {
       const genAddress = generateHash(5);
       const genPassword = generateHash(8);
       const randomDomain = domainsResponse.data[Math.floor(Math.random() * domainsResponse.data.length)].domain;
-      const account = await customRegister(`${genAddress}@${randomDomain}`, genPassword);
-      if (account) {
-        return account;
+      const registeredAccount = await customRegister(`${genAddress}@${randomDomain}`, genPassword);
+      if (registeredAccount) {
+        return registeredAccount;
       }
     }
     return null;
   };
 
-  const refreshMessages = async (account: IAccount) => {
-    const messagesResponse = await getMessages(account.token);
-    if (Array.isArray(messagesResponse.data)) {
-      dispatch(setMessages(messagesResponse.data));
-      return messagesResponse.data;
+  const refreshMessages = async (account?: IAccount) => {
+    if (account) {
+      const messagesResponse = await getMessages(account.token);
+      if (Array.isArray(messagesResponse.data)) {
+        dispatch(setMessages(messagesResponse.data));
+        return messagesResponse.data;
+      }
     }
     return null;
   };

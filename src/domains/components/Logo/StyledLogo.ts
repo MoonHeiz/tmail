@@ -15,7 +15,7 @@ export const AppName = styled.h1`
   font-weight: 700;
   margin: 0;
   text-transform: capitalize;
-  color: #fff;
+  color: #dcddde;
   white-space: nowrap;
 
   &:first-letter {
