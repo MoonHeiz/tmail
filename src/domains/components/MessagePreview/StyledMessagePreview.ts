@@ -2,18 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import rightArrowIcon from '../../../assets/right-arrow.svg';
 
-export const Messages = styled.div`
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: auto;
-`;
-
-export const MessagesInbox = styled.h2`
-  color: #e6e9ed;
-  font-size: 26px;
-  margin: 15px 0 20px;
-`;
-
 export const RightArrow = styled.div`
   background-image: url(${rightArrowIcon});
   background-repeat: no-repeat;
@@ -23,12 +11,12 @@ export const RightArrow = styled.div`
   transition: transform 0.1s ease-in-out;
 `;
 
-export const Message = styled(Link)`
+export const LinkMessage = styled(Link)`
   display: flex;
   gap: 15px;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 7px;
   background-color: #393c43;
   margin-bottom: 10px;
@@ -42,31 +30,10 @@ export const Message = styled(Link)`
   }
 `;
 
-export const Inbox = styled.h2`
-  font-size: 28px;
-  color: #dcddde;
-  margin: 10px 0 20px;
-`;
-
 export const SenderImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 100%;
-`;
-
-export const Address = styled.div`
-  color: #7c7f84;
-`;
-
-export const Name = styled.div`
-  color: #b0b7ff;
-`;
-
-export const SenderInfo = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-around;
 `;
 
 export const MailInfo = styled.div`
@@ -76,6 +43,25 @@ export const MailInfo = styled.div`
   width: 100%;
   overflow: hidden;
   gap: 25px;
+`;
+
+export const SenderInfo = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+export const Address = styled.p`
+  color: #7c7f84;
+  margin: 0;
+  font-size: 16px;
+`;
+
+export const Name = styled.h5`
+  color: #b0b7ff;
+  margin: 0;
+  font-size: 18px;
 `;
 
 export const MailContentPreview = styled(SenderInfo)``;

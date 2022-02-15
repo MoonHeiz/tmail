@@ -10,9 +10,7 @@ import { useAutoRefresh } from './domains/hooks/useAutoRefresh';
 
 export const App = () => {
   const { refreshAccountFromCache, fastRegister } = useAccount();
-  const account = useAppSelector(({ account }) => account);
   const dispatch = useAppDispatch();
-  const { startAutoRefreshMessages } = useAutoRefresh();
 
   useEffect(() => {
     (async () => {
@@ -23,10 +21,6 @@ export const App = () => {
       dispatch(setLoader(false));
     })();
   }, []);
-
-  useEffect(() => {
-    startAutoRefreshMessages(account);
-  }, [account]);
 
   return (
     <>

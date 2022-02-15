@@ -4,7 +4,7 @@ interface IResponse<T> {
 }
 
 const responseConverter = <T>(status: number, data: T): IResponse<T> => {
-  if (status < 200 && status > 206) {
+  if (status < 200 || status > 206) {
     return {
       data: null,
       status,

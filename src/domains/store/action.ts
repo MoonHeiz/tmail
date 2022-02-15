@@ -1,6 +1,6 @@
 import { IAccount } from '../interfaces/IAccount';
 import { IAction } from '../interfaces/IAction';
-import { IMessage } from '../interfaces/IMessage';
+import { IMessagePreview } from '../interfaces/IMessage';
 import { ActionType } from './actionType';
 
 export const setLoader = (loading: boolean): IAction<boolean> => {
@@ -25,7 +25,7 @@ export const setModal = (content: null | string | JSX.Element) => {
   };
 };
 
-export const setMessages = (messages: IMessage[]) => {
+export const setMessages = (messages: IMessagePreview[]) => {
   return {
     type: ActionType.refreshMessages,
     payload: messages,

@@ -8,11 +8,11 @@ import { LOCAL_STORAGE_ACCOUNT_KEY } from '../constants';
 
 export const useAccount = () => {
   const dispatch = useAppDispatch();
-  const { login, getDomains, register, getMessages } = useFetch();
+  const { login, getDomains, register, getMessages, getMessage } = useFetch();
 
   const validate = async (account: IAuthAccount): Promise<IAccount | null> => {
     const response = await login(account.address, account.password);
-    if (response.data) {
+    if (response.data && response.status === 200) {
       return { ...account, token: response.data.token, id: response.data.id };
     }
 

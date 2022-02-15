@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { MESSAGES_REFRESH_DELAY } from '../constants';
+import { MESSAGES_REFRESH_DELAY, TTF_MESSAGES_REFRESH_DELAY } from '../constants';
 import { IAccount } from '../interfaces/IAccount';
 import { useAccount } from './useAccount';
 
@@ -23,7 +23,7 @@ export const useAutoRefresh = () => {
       stopAutoRefreshMessages();
     }
     if (account) {
-      refreshMessages(account);
+      setTimeout(() => refreshMessages(account), TTF_MESSAGES_REFRESH_DELAY);
       id.current = setTimeout(() => tick(account), MESSAGES_REFRESH_DELAY);
     }
   };

@@ -2,7 +2,7 @@ import { deleteRequest, getRequest, postRequest } from '../../utils/helpers';
 import { API } from '../constants';
 import { IIntermediateAccount, IValidateAccount } from '../interfaces/IAccount';
 import { IDomain } from '../interfaces/IDomain';
-import { IMessage } from '../interfaces/IMessage';
+import { IMessagePreview, IMessage } from '../interfaces/IMessage';
 
 export const useFetch = () => {
   const getDomains = (page: number = 1) => {
@@ -18,26 +18,22 @@ export const useFetch = () => {
   };
 
   const getMessages = (token: string) => {
-    return getRequest<IMessage[]>(`${API}/messages`, token);
+    return getRequest<IMessagePreview[]>(`${API}/messages`, token);
+  };
+
+  const getMessage = (messageId: string, token: string) => {
+    return getRequest<IMessage>(`${API}/messages/${messageId}`, token);
   };
 
   // --------
 
-  const me = (token: string) => {
-    return getRequest(`${API}/me`, token);
-  };
-
   const deleteMe = (id: string, token: string) => {
     return deleteRequest(`${API}/accounts`, id, token);
-  };
-
-  const getMessage = (messageId: string, token: string) => {
-    return getRequest(`${API}/messages/${messageId}`, token);
   };
 
   const deleteMessage = (messageId: string, token: string) => {
     return deleteRequest(`${API}/messages`, messageId, token);
   };
 
-  return { register, login, me, deleteMe, getDomains, getMessages, getMessage, deleteMessage };
+  return { register, login, deleteMe, getDomains, getMessages, getMessage, deleteMessage };
 };

@@ -4,7 +4,7 @@ import logo from '../../../assets/logo.svg';
 
 export const Logo = styled.div``;
 
-export const LogoWrapper = styled(Link)`
+export const LinkLogoWrapper = styled(Link)`
   display: inline-flex;
   align-items: center;
   height: 30px;

@@ -1,4 +1,4 @@
-export interface IMessage {
+export interface IMessagePreview {
   id: string;
   accountId: string;
   createdAt: string;
@@ -6,13 +6,27 @@ export interface IMessage {
   downloadUrl: string;
   from: IAddresser;
   hasAttachments: boolean;
-  intro: string;
+  intro: string; //-
   isDeleted: boolean;
   msgid: string;
   seen: boolean;
   size: number;
   subject: string;
   to: IAddresser[];
+}
+
+export type IMessage = Omit<IMessagePreview, 'intro'> & IMessageBody;
+
+interface IMessageBody {
+  attachments: [];
+  bcc: [];
+  cc: [];
+  flagged: boolean;
+  html: string[];
+  retention: boolean;
+  retentionDate: string;
+  text: string;
+  verifications: [];
 }
 
 interface IAddresser {

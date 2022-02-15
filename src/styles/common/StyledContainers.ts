@@ -16,6 +16,12 @@ export const AppContainer = styled.div`
   }
 `;
 
+export const PageContainer = styled.div`
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+`;
+
 export const FlexContainer = styled.div<IFlexContainerProps>`
   display: flex;
   align-items: center;
