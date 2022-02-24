@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { Skeleton, skeletonTypes } from '../Skeleton/Skeleton';
 
 interface IWithLoaderProps {
-  Component: ComponentType<unknown>;
+  Component: ComponentType;
   skeletonType: skeletonTypes;
   loading: boolean;
   w?: string;

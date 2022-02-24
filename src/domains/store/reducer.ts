@@ -5,8 +5,9 @@ import { ActionType } from './actionType';
 const initialState: IStorage = {
   loading: true,
   account: null,
-  modalContent: null,
+  modal: null,
   messages: [],
+  domains: [],
 };
 
 export const reducer = (state = initialState, action: IAction<any>): IStorage => {
@@ -18,9 +19,11 @@ export const reducer = (state = initialState, action: IAction<any>): IStorage =>
     case ActionType.clearAccount:
       return { ...state, account: null };
     case ActionType.changeModal:
-      return { ...state, modalContent: action.payload };
+      return { ...state, modal: action.payload };
     case ActionType.refreshMessages:
       return { ...state, messages: action.payload };
+    case ActionType.changeDomains:
+      return { ...state, domains: action.payload };
     default:
       return state;
   }

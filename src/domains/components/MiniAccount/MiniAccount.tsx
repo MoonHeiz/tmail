@@ -2,16 +2,16 @@ import { useRef } from 'react';
 import { AVATARS_API } from '../../constants';
 import { useAccount } from '../../hooks/useAccount';
 import { useOutsideToggle } from '../../hooks/useOutsideToggle';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useAppDispatch } from '../../hooks/useRedux';
 import { setLoader, setModal } from '../../store/action';
 import { AccessibleControl } from '../AccessibleControl/AccessibleControl';
+import { Form } from '../Form/Form';
 import * as S from './StyledMiniAccount';
 
 export const MiniAccount = () => {
   const controlRef = useRef<HTMLButtonElement>(null);
   const [isDropdownOpened, toggleDropdown] = useOutsideToggle(controlRef);
-  const account = useAppSelector(({ account }) => account);
-  const { exit, fastRegister } = useAccount();
+  const { account, exit, fastRegister, deleteAccount, customLogin } = useAccount();
   const dispatch = useAppDispatch();
 
   const openDropdownHandler = () => {
@@ -25,7 +25,23 @@ export const MiniAccount = () => {
   };
 
   const loginHandler = () => {
-    dispatch(setModal(<h1>skskks</h1>));
+    dispatch(
+      setModal({
+        title: 'Login',
+        subtitle: 'Here you can log in to your account',
+        content: <Form submit={loginSubmit} />,
+      })
+    );
+  };
+
+  const loginSubmit = async (e: any, email: string, password: string) => {
+    await customLogin({ address: email, password });
+  };
+
+  const deleteHandler = async () => {
+    await deleteAccount();
+    await fastRegister();
+    dispatch(setLoader(false));
   };
 
   return (
@@ -35,8 +51,12 @@ export const MiniAccount = () => {
         {isDropdownOpened && (
           <S.DropdownWrapper>
             <S.Dropdown>
+              <S.MenuItem onClick={loginHandler}>Custom account</S.MenuItem>
               <S.MenuItem onClick={loginHandler}>Login</S.MenuItem>
               <S.MenuItem onClick={exitHandler}>Sign out</S.MenuItem>
+              <S.MenuItem onClick={deleteHandler} $red>
+                Delete account
+              </S.MenuItem>
             </S.Dropdown>
           </S.DropdownWrapper>
         )}

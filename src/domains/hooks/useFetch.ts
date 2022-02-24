@@ -25,11 +25,11 @@ export const useFetch = () => {
     return getRequest<IMessage>(`${API}/messages/${messageId}`, token);
   };
 
-  // --------
-
   const deleteMe = (id: string, token: string) => {
     return deleteRequest(`${API}/accounts`, id, token);
   };
+
+  // --------
 
   const deleteMessage = (messageId: string, token: string) => {
     return deleteRequest(`${API}/messages`, messageId, token);

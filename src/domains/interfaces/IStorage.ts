@@ -1,9 +1,12 @@
 import { IAccount } from './IAccount';
+import { IDomain } from './IDomain';
 import { IMessagePreview } from './IMessage';
+import { IModal } from './IModal';
 
 export interface IStorage {
   loading: boolean;
   account: IAccount | null;
-  modalContent: null | JSX.Element | string;
+  modal: IModal | null;
   messages: IMessagePreview[];
+  domains: IDomain[];
 }

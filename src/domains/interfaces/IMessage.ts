@@ -6,7 +6,7 @@ export interface IMessagePreview {
   downloadUrl: string;
   from: IAddresser;
   hasAttachments: boolean;
-  intro: string; //-
+  intro: string;
   isDeleted: boolean;
   msgid: string;
   seen: boolean;

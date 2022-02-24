@@ -1,8 +1,8 @@
-import { useAppSelector } from '../../hooks/useRedux';
+import { useAccount } from '../../hooks/useAccount';
 import * as S from './StyledEmail';
 
 export const Email: React.VFC = () => {
-  const account = useAppSelector(({ account }) => account);
+  const { account } = useAccount();
 
   const copyEmailHandler = () => {
     navigator.clipboard.writeText(account!.address);

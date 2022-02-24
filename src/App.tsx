@@ -3,23 +3,29 @@ import { AppRouter } from './router';
 import { GlobalStyles } from './styles/global';
 import { useEffect } from 'react';
 import { useAccount } from './domains/hooks/useAccount';
-import { useAppDispatch, useAppSelector } from './domains/hooks/useRedux';
+import { useAppDispatch } from './domains/hooks/useRedux';
 import { setLoader } from './domains/store/action';
 import { Modal } from './domains/components/Modal/Modal';
-import { useAutoRefresh } from './domains/hooks/useAutoRefresh';
+import { AUTH_ERROR_DELAY } from './domains/constants';
 
 export const App = () => {
   const { refreshAccountFromCache, fastRegister } = useAccount();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    (async () => {
-      const hasCachedAccount = await refreshAccountFromCache();
-      if (!hasCachedAccount) {
-        await fastRegister();
-      }
+  const authAccount = async () => {
+    let hasCachedAccount = await refreshAccountFromCache();
+    if (!hasCachedAccount) {
+      hasCachedAccount = await fastRegister();
+    }
+    if (hasCachedAccount) {
       dispatch(setLoader(false));
-    })();
+    } else {
+      setTimeout(authAccount, AUTH_ERROR_DELAY);
+    }
+  };
+
+  useEffect(() => {
+    authAccount();
   }, []);
 
   return (

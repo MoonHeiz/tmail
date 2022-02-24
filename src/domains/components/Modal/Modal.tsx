@@ -3,7 +3,7 @@ import { setModal } from '../../store/action';
 import * as S from './StyledModal';
 
 export const Modal = () => {
-  const modalContent = useAppSelector(({ modalContent }) => modalContent);
+  const modal = useAppSelector(({ modal }) => modal);
   const dispatch = useAppDispatch();
 
   const outsideHandler = () => {
@@ -16,9 +16,15 @@ export const Modal = () => {
 
   return (
     <>
-      {modalContent && (
+      {modal && (
         <S.Outside onClick={outsideHandler}>
-          <S.ContentContainer onClick={modalHandler}>{modalContent}</S.ContentContainer>
+          <S.Modal onClick={modalHandler}>
+            <S.Head>
+              <S.Title>{modal.title}</S.Title>
+              {modal.subtitle && <S.Subtitle>{modal.subtitle}</S.Subtitle>}
+            </S.Head>
+            <S.Content>{modal.content}</S.Content>
+          </S.Modal>
         </S.Outside>
       )}
     </>

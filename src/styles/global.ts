@@ -50,6 +50,7 @@ export const GlobalStyles = createGlobalStyle`
 
   ::selection {
     background-color: #5865f2a3;
+    color:#fff;
   }
 
   ::-webkit-scrollbar {

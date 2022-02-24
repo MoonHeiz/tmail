@@ -6,14 +6,15 @@ import { useAppSelector } from '../../domains/hooks/useRedux';
 import { EmptyMessages } from '../../domains/components/EmptyMessages/EmptyMessages';
 import { CSC } from '../../styles/common';
 import { MessagePreview } from '../../domains/components/MessagePreview/MessagePreview';
+import { useAccount } from '../../domains/hooks/useAccount';
 
 export const Messages = () => {
   const messages = useAppSelector(({ messages }) => messages);
-  const account = useAppSelector(({ account }) => account);
+  const { account } = useAccount();
   const { startAutoRefreshMessages } = useAutoRefresh();
 
   useEffect(() => {
-    startAutoRefreshMessages(account);
+    startAutoRefreshMessages();
   }, [account]);
 
   const hasMessages = messages.length > 0;
@@ -24,7 +25,7 @@ export const Messages = () => {
         <>
           <S.Inbox>Inbox</S.Inbox>
           {messages.map((message) => (
-            <MessagePreview messageInfo={message} />
+            <MessagePreview key={message.id} messageInfo={message} />
           ))}
         </>
       )}

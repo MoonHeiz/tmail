@@ -44,19 +44,15 @@ export const getRequest = async <T>(url: string, token?: string): Promise<IRespo
   return responseConverter<T>(response.status, data);
 };
 
-export const deleteRequest = async <T>(url: string, id: string, token: string): Promise<IResponse<T>> => {
+export const deleteRequest = async (url: string, id: string, token: string): Promise<IResponse<null>> => {
   const response = await fetch(`${url}/${id}`, {
     method: 'DELETE',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
       authorization: token ? `Bearer ${token}` : '',
     },
   });
 
-  const data = (await response.json()) as T;
-
-  return responseConverter<T>(response.status, data);
+  return responseConverter<null>(response.status, null);
 };
 
 export const generateHash = (length: number = 5) => {
