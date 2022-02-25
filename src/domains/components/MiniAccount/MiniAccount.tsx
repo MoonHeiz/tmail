@@ -15,7 +15,9 @@ export const MiniAccount = () => {
   const dispatch = useAppDispatch();
 
   const openDropdownHandler = () => {
-    toggleDropdown();
+    if (!isDropdownOpened) {
+      toggleDropdown();
+    }
   };
 
   const exitHandler = async () => {
@@ -34,7 +36,7 @@ export const MiniAccount = () => {
     );
   };
 
-  const loginSubmit = async (e: any, email: string, password: string) => {
+  const loginSubmit = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
     await customLogin({ address: email, password });
   };
 
@@ -50,6 +52,10 @@ export const MiniAccount = () => {
         <S.AccountFakeImage src={`${AVATARS_API}/initials/${account!.address}.svg`} alt="your avatar" />
         {isDropdownOpened && (
           <S.DropdownWrapper>
+            <S.AccountInfo>
+              <S.Login>{account?.address}</S.Login>
+              <S.Password>{account?.password}</S.Password>
+            </S.AccountInfo>
             <S.Dropdown>
               <S.MenuItem onClick={loginHandler}>Custom account</S.MenuItem>
               <S.MenuItem onClick={loginHandler}>Login</S.MenuItem>

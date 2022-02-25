@@ -36,3 +36,16 @@ export const AccountFakeImage = styled.img`
   width: 100%;
   background-color: #3b3b3b;
 `;
+
+export const AccountInfo = styled.div`
+  padding: 0 15px;
+`;
+
+export const Login = styled.h5`
+  color: #fff;
+  margin: 0 0 5px;
+  user-select: all;
+  font-size: 14px;
+`;
+
+export const Password = styled(Login)``;

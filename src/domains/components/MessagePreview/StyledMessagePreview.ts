@@ -56,6 +56,7 @@ export const Address = styled.p`
   color: #7c7f84;
   margin: 0;
   font-size: 16px;
+  white-space: nowrap;
 `;
 
 export const Name = styled.h5`

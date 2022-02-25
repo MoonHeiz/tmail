@@ -27,4 +27,12 @@ export const Submit = styled.button.attrs({ type: 'submit' })`
   border-radius: 7px;
   background-color: #5865f2;
   color: #fff;
+
+  &:hover {
+    background-color: #6572ff;
+  }
+
+  &:active {
+    background-color: #3544ed;
+  }
 `;

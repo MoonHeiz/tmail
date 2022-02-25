@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import emailIcon from '../../../assets/email-mini.svg';
+import copyIcon from '../../../assets/email-copy.svg';
 
 export const Email = styled.div`
   display: flex;
@@ -7,18 +8,25 @@ export const Email = styled.div`
   justify-content: center;
   height: 100%;
   cursor: pointer;
+  gap: 5px;
+`;
 
-  &::before {
-    display: block;
-    background-image: url(${emailIcon});
-    content: '';
-    width: 22px;
-    background-repeat: no-repeat;
-    height: 22px;
-    background-position: center;
-    margin-right: 5px;
-    }
-  }
+const Icon = styled.div`
+  display: block;
+  background-image: url(${emailIcon});
+  content: '';
+  width: 22px;
+  background-repeat: no-repeat;
+  height: 22px;
+  background-position: center;
+`;
+
+export const EmailIcon = styled(Icon)`
+  background-image: url(${emailIcon});
+`;
+
+export const CopyIcon = styled(Icon)`
+  background-image: url(${copyIcon});
 `;
 
 export const EmailField = styled.input.attrs({ type: 'email', readonly: 'readonly' })`

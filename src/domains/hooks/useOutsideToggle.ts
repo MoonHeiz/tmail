@@ -12,9 +12,9 @@ export const useOutsideToggle = <T extends HTMLElement>(ref: React.RefObject<T>)
         return;
       }
 
-      toggle();
+      setState(false);
     },
-    [ref, toggle]
+    [ref]
   );
 
   useEffect(() => {
