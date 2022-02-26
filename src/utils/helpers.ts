@@ -38,10 +38,14 @@ export const getRequest = async <T>(url: string, token?: string): Promise<IRespo
       authorization: token ? `Bearer ${token}` : '',
     },
   });
+  let data = null;
+  if (response.headers.get('content-type')?.startsWith('text/html')) {
+    data = await response.text();
+  } else {
+    data = await response.json();
+  }
 
-  const data = (await response.json()) as T;
-
-  return responseConverter<T>(response.status, data);
+  return responseConverter<T>(response.status, data as T);
 };
 
 export const deleteRequest = async (url: string, id: string, token: string): Promise<IResponse<null>> => {

@@ -25,6 +25,10 @@ export const LinkMessage = styled(Link)`
     margin: 0;
   }
 
+  &:hover {
+    background-color: #40434a;
+  }
+
   &:hover ${RightArrow} {
     transform: translateX(5px);
   }

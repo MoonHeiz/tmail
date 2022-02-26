@@ -6,7 +6,6 @@ import { useAccount } from '../../domains/hooks/useAccount';
 import { useFetch } from '../../domains/hooks/useFetch';
 import { IMessage } from '../../domains/interfaces/IMessage';
 import { CSC } from '../../styles/common';
-import * as S from './StyledMessage';
 
 export const Message: React.VFC = () => {
   const { messageId } = useParams();
@@ -27,5 +26,5 @@ export const Message: React.VFC = () => {
     })();
   }, [account]);
 
-  return <CSC.AppContainer>{message && <MessageView message={message} />}</CSC.AppContainer>;
+  return <CSC.AppContainer>{message && <MessageView message={message} account={account} />}</CSC.AppContainer>;
 };

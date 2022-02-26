@@ -1,34 +1,20 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import rightArrowIcon from '../../../assets/right-arrow.svg';
+import styled, { css } from 'styled-components';
 
-export const BackContainer = styled.div`
-  padding: 20px 0 23px;
-`;
-
-export const LeftArrow = styled.div`
-  background-image: url(${rightArrowIcon});
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 20px;
-  height: 20px;
-  transition: transform 0.1s ease-in-out;
-  transform: rotate(180deg);
-`;
-
-export const LinkBack = styled(Link)`
-  align-items: center;
-  display: inline-flex;
-  font-size: 20px;
-  color: #7c7f84;
-  transition: color 0.1s ease-in-out;
-
-  &:hover > ${LeftArrow} {
-    transform: rotate(180deg) translateX(5px);
-  }
+const baseControl = css`
+  background-color: #393c43;
+  border: 1px solid #2b2d32;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 5px;
+  width: 100%;
 
   &:hover {
-    color: #fff;
+    background-color: #40434a;
+  }
+
+  &:active {
+    background-color: #26292c;
   }
 `;
 
@@ -45,12 +31,12 @@ export const BasicContent = styled.div`
 
 export const ControlButton = styled.button`
   cursor: pointer;
-  background-color: #393c43;
-  border: 1px solid #2b2d32;
-  color: #fff;
-  padding: 10px 25px;
-  border-radius: 5px;
-  width: 100%;
+  ${baseControl}
+`;
+
+export const ControlLink = styled(Link)`
+  display: block;
+  ${baseControl}
 `;
 
 export const Controls = styled.div`

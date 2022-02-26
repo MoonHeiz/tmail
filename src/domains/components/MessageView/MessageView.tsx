@@ -1,12 +1,20 @@
-import { AVATARS_API, DAYS_DECLENSIONS, DECLENSION_CASES } from '../../constants';
+import { useRef } from 'react';
+import { AVATARS_API, DAYS_DECLENSIONS, DECLENSION_CASES, MESSAGE_DOWNLOAD_EXT } from '../../constants';
+import { useFetch } from '../../hooks/useFetch';
+import { IAccount } from '../../interfaces/IAccount';
 import { IMessage } from '../../interfaces/IMessage';
+import { Back } from '../Back/Back';
 import * as S from './StyledMessageView';
 
 interface IMessageViewProps {
-  message?: IMessage;
+  message: IMessage;
+  account: IAccount | null;
 }
 
-export const MessageView: React.VFC<IMessageViewProps> = ({ message }) => {
+export const MessageView: React.VFC<IMessageViewProps> = ({ message, account }) => {
+  const bodyRef = useRef<HTMLIFrameElement>(null);
+  const { downloadMessage } = useFetch();
+
   const declension = (value: number): string => {
     if (value % 100 > 4 && value % 100 < 20) {
       return `${value} ${DAYS_DECLENSIONS[2]} ago`;
@@ -23,35 +31,50 @@ export const MessageView: React.VFC<IMessageViewProps> = ({ message }) => {
     return daysAgo;
   };
 
+  const printHandler = () => {
+    const iframe = bodyRef.current;
+    if (iframe) {
+      const iframeWindow = iframe.contentWindow;
+      iframe.focus();
+      iframeWindow?.print();
+    }
+  };
+
+  const downloadHandler = async () => {
+    const downloadResponse = await downloadMessage(message.downloadUrl, account!.token);
+    if (downloadResponse.data) {
+      const url = window.URL.createObjectURL(new Blob([downloadResponse.data], { type: 'text/plain' }));
+      let a = document.createElement('a');
+      a.href = url;
+      a.download = `${message.id}${MESSAGE_DOWNLOAD_EXT}`;
+      a.click();
+    }
+  };
+
   return (
     <>
-      <S.BackContainer>
-        <S.LinkBack to="/">
-          <S.LeftArrow />
-          Back
-        </S.LinkBack>
-      </S.BackContainer>
+      <Back to="/" />
       <S.BasicContent>
-        <S.SubjectPreview>{message!.subject}</S.SubjectPreview>
+        <S.SubjectPreview>{message.subject}</S.SubjectPreview>
         <S.Controls>
-          <S.ControlButton>Download</S.ControlButton>
-          <S.ControlButton>Source</S.ControlButton>
-          <S.ControlButton>Print</S.ControlButton>
+          <S.ControlButton onClick={downloadHandler}>Download</S.ControlButton>
+          <S.ControlLink to={`/source/${message.id}`}>Source</S.ControlLink>
+          <S.ControlButton onClick={printHandler}>Print</S.ControlButton>
           <S.ControlButton>Delete</S.ControlButton>
         </S.Controls>
       </S.BasicContent>
       <S.MessageContent>
         <S.Head>
           <S.SenderInfo>
-            <S.SenderImage src={`${AVATARS_API}/initials/${message!.from.address}.svg`} alt="from image" />
+            <S.SenderImage src={`${AVATARS_API}/initials/${message.from.address}.svg`} alt="from image" />
             <S.Block>
-              <S.Name>{message!.from.name}</S.Name>
-              <S.Subject>{message!.from.address}</S.Subject>
+              <S.Name>{message.from.name}</S.Name>
+              <S.Subject>{message.from.address}</S.Subject>
             </S.Block>
           </S.SenderInfo>
-          <S.Ago>{declension(getDayDifference(message!.createdAt))}</S.Ago>
+          <S.Ago>{declension(getDayDifference(message.createdAt))}</S.Ago>
         </S.Head>
-        <S.Body srcDoc={message!.html[0]}></S.Body>
+        <S.Body ref={bodyRef} srcDoc={message.html[0]}></S.Body>
       </S.MessageContent>
     </>
   );

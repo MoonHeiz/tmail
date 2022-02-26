@@ -29,11 +29,15 @@ export const useFetch = () => {
     return deleteRequest(`${API}/accounts`, id, token);
   };
 
+  const downloadMessage = (downloadURL: string, token: string) => {
+    return getRequest<string>(`${API}${downloadURL}`, token);
+  };
+
   // --------
 
   const deleteMessage = (messageId: string, token: string) => {
     return deleteRequest(`${API}/messages`, messageId, token);
   };
 
-  return { register, login, deleteMe, getDomains, getMessages, getMessage, deleteMessage };
+  return { register, login, deleteMe, getDomains, getMessages, getMessage, downloadMessage, deleteMessage };
 };

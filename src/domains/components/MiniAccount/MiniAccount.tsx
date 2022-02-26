@@ -36,6 +36,15 @@ export const MiniAccount = () => {
     );
   };
 
+  const registerHandler = () => {
+    dispatch(
+      setModal({
+        title: 'Register',
+        content: <Form submit={loginSubmit} />,
+      })
+    );
+  };
+
   const loginSubmit = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
     await customLogin({ address: email, password });
   };
@@ -57,7 +66,7 @@ export const MiniAccount = () => {
               <S.Password>{account?.password}</S.Password>
             </S.AccountInfo>
             <S.Dropdown>
-              <S.MenuItem onClick={loginHandler}>Custom account</S.MenuItem>
+              <S.MenuItem onClick={registerHandler}>Custom account</S.MenuItem>
               <S.MenuItem onClick={loginHandler}>Login</S.MenuItem>
               <S.MenuItem onClick={exitHandler}>Sign out</S.MenuItem>
               <S.MenuItem onClick={deleteHandler} $red>

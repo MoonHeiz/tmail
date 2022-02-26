@@ -6,5 +6,6 @@ export const MESSAGES_REFRESH_DELAY = 10000;
 export const AUTH_ERROR_DELAY = 1500;
 export const COPY_RETOGGLE_DELAY = 350;
 export const TTF_MESSAGES_REFRESH_DELAY = 0;
+export const MESSAGE_DOWNLOAD_EXT = '.eml';
 export const DAYS_DECLENSIONS = ['day', 'days', 'days'];
 export const DECLENSION_CASES = [2, 0, 1, 1, 1, 2];
