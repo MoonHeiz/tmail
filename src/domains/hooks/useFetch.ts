@@ -3,6 +3,7 @@ import { API } from '../constants';
 import { IIntermediateAccount, IValidateAccount } from '../interfaces/IAccount';
 import { IDomain } from '../interfaces/IDomain';
 import { IMessagePreview, IMessage } from '../interfaces/IMessage';
+import { ISource } from '../interfaces/ISource';
 
 export const useFetch = () => {
   const getDomains = (page: number = 1) => {
@@ -33,11 +34,13 @@ export const useFetch = () => {
     return getRequest<string>(`${API}${downloadURL}`, token);
   };
 
-  // --------
+  const getSource = (messageId: string, token: string) => {
+    return getRequest<ISource>(`${API}/sources/${messageId}`, token);
+  };
 
   const deleteMessage = (messageId: string, token: string) => {
     return deleteRequest(`${API}/messages`, messageId, token);
   };
 
-  return { register, login, deleteMe, getDomains, getMessages, getMessage, downloadMessage, deleteMessage };
+  return { register, login, deleteMe, getDomains, getMessages, getMessage, downloadMessage, getSource, deleteMessage };
 };

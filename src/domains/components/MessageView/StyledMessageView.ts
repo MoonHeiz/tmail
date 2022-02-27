@@ -36,6 +36,7 @@ export const ControlButton = styled.button`
 
 export const ControlLink = styled(Link)`
   display: block;
+  text-align: center;
   ${baseControl}
 `;
 
@@ -89,6 +90,7 @@ export const Name = styled.h3`
 
 export const Subject = styled.p`
   margin: 0;
+  color: #0e0e0e;
 `;
 
 export const SenderInfo = styled.div`

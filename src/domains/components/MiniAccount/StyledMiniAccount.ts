@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { MenuItemProps } from '../../interfaces/IStyles';
+
+interface IMenuItemProps {
+  $red?: boolean;
+}
 
 export const MiniAccount = styled.div`
   position: relative;
@@ -18,7 +21,7 @@ export const Dropdown = styled.ul`
   color: #dcddde;
 `;
 
-export const MenuItem = styled.li<MenuItemProps>`
+export const MenuItem = styled.li<IMenuItemProps>`
   padding: 7px 20px;
   white-space: nowrap;
   color: ${({ $red }) => ($red ? '#ff8b8b!important' : '')};

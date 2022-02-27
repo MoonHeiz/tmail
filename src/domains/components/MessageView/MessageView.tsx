@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AVATARS_API, DAYS_DECLENSIONS, DECLENSION_CASES, MESSAGE_DOWNLOAD_EXT } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import { IAccount } from '../../interfaces/IAccount';
@@ -13,7 +14,8 @@ interface IMessageViewProps {
 
 export const MessageView: React.VFC<IMessageViewProps> = ({ message, account }) => {
   const bodyRef = useRef<HTMLIFrameElement>(null);
-  const { downloadMessage } = useFetch();
+  const { downloadMessage, deleteMessage } = useFetch();
+  const navigate = useNavigate();
 
   const declension = (value: number): string => {
     if (value % 100 > 4 && value % 100 < 20) {
@@ -51,6 +53,11 @@ export const MessageView: React.VFC<IMessageViewProps> = ({ message, account }) 
     }
   };
 
+  const deleteMessageHandler = async () => {
+    await deleteMessage(message.id, account!.token);
+    navigate('/');
+  };
+
   return (
     <>
       <Back to="/" />
@@ -60,7 +67,7 @@ export const MessageView: React.VFC<IMessageViewProps> = ({ message, account }) 
           <S.ControlButton onClick={downloadHandler}>Download</S.ControlButton>
           <S.ControlLink to={`/source/${message.id}`}>Source</S.ControlLink>
           <S.ControlButton onClick={printHandler}>Print</S.ControlButton>
-          <S.ControlButton>Delete</S.ControlButton>
+          <S.ControlButton onClick={deleteMessageHandler}>Delete</S.ControlButton>
         </S.Controls>
       </S.BasicContent>
       <S.MessageContent>

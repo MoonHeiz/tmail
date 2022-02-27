@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-interface SkeletonWrapperProps {
+interface ISkeletonWrapperProps {
   h?: string;
   w?: string;
 }
@@ -17,7 +17,7 @@ const shimmerAnimation = keyframes`
   }
 `;
 
-export const SkeletonWrapper = styled.div<SkeletonWrapperProps>`
+export const SkeletonWrapper = styled.div<ISkeletonWrapperProps>`
   position: relative;
   width: ${({ w }) => w || '100%'};
   height: ${({ h }) => h || '100%'};

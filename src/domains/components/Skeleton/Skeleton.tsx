@@ -1,6 +1,6 @@
 import * as S from './StyledSkeleton';
 
-interface SkeletonProps {
+interface ISkeletonProps {
   type: skeletonTypes;
   w?: string;
   h?: string;
@@ -8,7 +8,7 @@ interface SkeletonProps {
 
 export type skeletonTypes = 'row' | 'circle';
 
-export const Skeleton: React.VFC<SkeletonProps> = ({ type, w = '100%', h = '100%' }) => {
+export const Skeleton: React.VFC<ISkeletonProps> = ({ type, w = '100%', h = '100%' }) => {
   return (
     <S.SkeletonWrapper w={w} h={h}>
       {type === 'row' && <S.SkeletonRow />}
