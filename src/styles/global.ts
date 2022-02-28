@@ -44,8 +44,9 @@ export const GlobalStyles = createGlobalStyle`
 
   a:focus-visible,
   input:focus-visible,
-  button:focus-visible{
-    outline: 2px dotted #5865f2;
+  button:focus-visible,
+  select:focus-visible{
+    outline: 3px dotted #5865f2;
   }
 
   ::selection {

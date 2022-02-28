@@ -3,6 +3,7 @@ import { AVATARS_API } from '../../constants';
 import { useAccount } from '../../hooks/useAccount';
 import { useOutsideToggle } from '../../hooks/useOutsideToggle';
 import { useAppDispatch } from '../../hooks/useRedux';
+import { IForm } from '../../interfaces/IForm';
 import { setLoader, setModal } from '../../store/action';
 import { AccessibleControl } from '../AccessibleControl/AccessibleControl';
 import { Form } from '../Form/Form';
@@ -11,7 +12,8 @@ import * as S from './StyledMiniAccount';
 export const MiniAccount = () => {
   const controlRef = useRef<HTMLButtonElement>(null);
   const [isDropdownOpened, toggleDropdown] = useOutsideToggle(controlRef);
-  const { account, exit, fastRegister, deleteAccount, customLogin } = useAccount();
+  const { account, exit, fastRegister, deleteAccount, customLogin, customRegister, getDomainsFromStorage } =
+    useAccount();
   const dispatch = useAppDispatch();
 
   const openDropdownHandler = () => {
@@ -31,22 +33,29 @@ export const MiniAccount = () => {
       setModal({
         title: 'Login',
         subtitle: 'Here you can log in to your account',
-        content: <Form submit={loginSubmit} />,
+        content: <Form submit={loginSubmit} submitValue="Login" />,
       })
     );
   };
 
-  const registerHandler = () => {
+  const registerHandler = async () => {
+    const availableDomains = await getDomainsFromStorage();
     dispatch(
       setModal({
         title: 'Register',
-        content: <Form submit={loginSubmit} />,
+        content: <Form submit={registerSubmit} domains={availableDomains} submitValue="Register" />,
       })
     );
   };
 
-  const loginSubmit = async (e: React.FormEvent<HTMLFormElement>, email: string, password: string) => {
+  const loginSubmit = async ({ email, password }: IForm) => {
     await customLogin({ address: email, password });
+  };
+
+  const registerSubmit = async ({ email, password, selectedDomain }: IForm) => {
+    dispatch(setLoader(true));
+    await customRegister(`${email}@${selectedDomain}`, password);
+    dispatch(setLoader(false));
   };
 
   const deleteHandler = async () => {

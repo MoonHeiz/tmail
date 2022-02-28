@@ -42,6 +42,7 @@ export const AccountFakeImage = styled.img`
 
 export const AccountInfo = styled.div`
   padding: 0 15px;
+  text-align: left;
 `;
 
 export const Login = styled.h5`

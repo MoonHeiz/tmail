@@ -116,6 +116,8 @@ export const useAccount = () => {
     refreshMessages,
     deleteAccount,
     customLogin,
+    getDomainsFromStorage,
+    customRegister,
     exit,
   };
 };
