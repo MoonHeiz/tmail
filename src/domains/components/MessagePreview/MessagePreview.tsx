@@ -9,7 +9,7 @@ interface IMessagePreviewProps {
 export const MessagePreview: React.VFC<IMessagePreviewProps> = ({ messageInfo }) => {
   return (
     <S.LinkMessage key={messageInfo.id} to={`/message/${messageInfo.id}`}>
-      <S.SenderImage src={`${AVATARS_API}/initials/${messageInfo.from.address}.svg`} alt="from image" />
+      <S.SenderImage src={`${AVATARS_API}/initials/${messageInfo.from.address}.svg`} alt="sender" />
       <S.MailInfo>
         <S.SenderInfo>
           <S.Name>{messageInfo.from.name}</S.Name>

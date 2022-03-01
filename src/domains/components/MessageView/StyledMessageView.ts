@@ -8,6 +8,7 @@ const baseControl = css`
   padding: 10px 25px;
   border-radius: 5px;
   width: 100%;
+  white-space: nowrap;
 
   &:hover {
     background-color: #40434a;

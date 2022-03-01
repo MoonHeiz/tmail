@@ -7,11 +7,13 @@ import { EmptyMessages } from '../../domains/components/EmptyMessages/EmptyMessa
 import { CSC } from '../../styles/common';
 import { MessagePreview } from '../../domains/components/MessagePreview/MessagePreview';
 import { useAccount } from '../../domains/hooks/useAccount';
+import { useTranslation } from 'react-i18next';
 
 export const Messages = () => {
   const messages = useAppSelector(({ messages }) => messages);
   const { account } = useAccount();
   const { startAutoRefreshMessages } = useAutoRefresh();
+  const { t } = useTranslation();
 
   useEffect(() => {
     startAutoRefreshMessages();
@@ -23,7 +25,7 @@ export const Messages = () => {
       {!hasMessages && <EmptyMessages />}
       {hasMessages && (
         <>
-          <S.Inbox>Inbox</S.Inbox>
+          <S.Inbox>{t('inbox')}</S.Inbox>
           {messages.map((message) => (
             <MessagePreview key={message.id} messageInfo={message} />
           ))}

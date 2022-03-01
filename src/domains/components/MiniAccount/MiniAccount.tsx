@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AVATARS_API } from '../../constants';
 import { useAccount } from '../../hooks/useAccount';
 import { useOutsideToggle } from '../../hooks/useOutsideToggle';
@@ -15,6 +16,7 @@ export const MiniAccount = () => {
   const { account, exit, fastRegister, deleteAccount, customLogin, customRegister, getDomainsFromStorage } =
     useAccount();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const openDropdownHandler = () => {
     if (!isDropdownOpened) {
@@ -31,9 +33,9 @@ export const MiniAccount = () => {
   const loginHandler = () => {
     dispatch(
       setModal({
-        title: 'Login',
-        subtitle: 'Here you can log in to your account',
-        content: <Form submit={loginSubmit} submitValue="Login" />,
+        title: t('loginTitle'),
+        subtitle: t('loginSubtitle'),
+        content: <Form submit={loginSubmit} submitValue={t('loginSubmit')} />,
       })
     );
   };
@@ -42,8 +44,8 @@ export const MiniAccount = () => {
     const availableDomains = await getDomainsFromStorage();
     dispatch(
       setModal({
-        title: 'Register',
-        content: <Form submit={registerSubmit} domains={availableDomains} submitValue="Register" />,
+        title: t('registerTitle'),
+        content: <Form submit={registerSubmit} domains={availableDomains} submitValue={t('registerSubmit')} />,
       })
     );
   };
@@ -75,11 +77,11 @@ export const MiniAccount = () => {
               <S.Password>{account?.password}</S.Password>
             </S.AccountInfo>
             <S.Dropdown>
-              <S.MenuItem onClick={registerHandler}>Custom account</S.MenuItem>
-              <S.MenuItem onClick={loginHandler}>Login</S.MenuItem>
-              <S.MenuItem onClick={exitHandler}>Sign out</S.MenuItem>
+              <S.MenuItem onClick={registerHandler}>{t('miniAccountCustomAccount')}</S.MenuItem>
+              <S.MenuItem onClick={loginHandler}>{t('miniAccountLogin')}</S.MenuItem>
+              <S.MenuItem onClick={exitHandler}>{t('miniAccountSignOut')}</S.MenuItem>
               <S.MenuItem onClick={deleteHandler} $red>
-                Delete account
+                {t('miniAccountDelete')}
               </S.MenuItem>
             </S.Dropdown>
           </S.DropdownWrapper>

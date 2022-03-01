@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IDomain } from '../../interfaces/IDomain';
 import { IForm } from '../../interfaces/IForm';
 import * as S from './StyledForm';
@@ -13,6 +14,7 @@ export const Form: React.VFC<IFormProps> = ({ submit, domains, submitValue }) =>
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedDomain, setSelectedDomain] = useState(domains && domains[0].domain);
+  const { t } = useTranslation();
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,13 +29,14 @@ export const Form: React.VFC<IFormProps> = ({ submit, domains, submitValue }) =>
   return (
     <S.Form onSubmit={submitHandler}>
       <S.Block>
-        <S.Label htmlFor="email">Email</S.Label>
+        <S.Label htmlFor="email">{t('emailField')}</S.Label>
         <S.EmailContainer>
           <S.Field
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
+            placeholder={t('emailField')}
+            minLength={3}
             required
             $partRounded={hasDomains}
           />
@@ -47,12 +50,13 @@ export const Form: React.VFC<IFormProps> = ({ submit, domains, submitValue }) =>
         </S.EmailContainer>
       </S.Block>
       <S.Block>
-        <S.Label htmlFor="password">Password</S.Label>
+        <S.Label htmlFor="password">{t('passwordField')}</S.Label>
         <S.Field
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
+          placeholder={t('passwordField')}
+          minLength={3}
           required
         />
       </S.Block>

@@ -1,0 +1,22 @@
+{
+  "back": "back",
+  "emailClipboard": "Your temporary Email address, click to copy to clipboard!",
+  "emptyMessages": "Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure.Temp Mail provides temporary, secure, anonymous, free, disposable email address.",
+  "emailField": "Email",
+  "passwordField": "Password",
+  "downloadBtn": "Download",
+  "printBtn": "Print",
+  "deleteBtn": "Delete",
+  "sourceLink": "Source",
+  "loginTitle": "Login",
+  "loginSubtitle": "Here you can log in to your account",
+  "loginSubmit": "Login",
+  "registerTitle": "Register",
+  "registerSubmit": "Register",
+  "miniAccountCustomAccount": "Custom account",
+  "miniAccountLogin": "Login",
+  "miniAccountSignOut": "Sign out",
+  "miniAccountDelete": "Delete account",
+  "source": "Source",
+  "inbox": "Inbox"
+}

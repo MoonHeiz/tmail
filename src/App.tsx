@@ -7,6 +7,7 @@ import { useAppDispatch } from './domains/hooks/useRedux';
 import { setLoader } from './domains/store/action';
 import { Modal } from './domains/components/Modal/Modal';
 import { AUTH_ERROR_DELAY } from './domains/constants';
+import './utils/i18n';
 
 export const App = () => {
   const { refreshAccountFromCache, fastRegister } = useAccount();

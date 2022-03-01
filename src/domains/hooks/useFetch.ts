@@ -1,4 +1,4 @@
-import { deleteRequest, getRequest, postRequest } from '../../utils/helpers';
+import { deleteRequest, getRequest, postRequest } from '../../utils/requests';
 import { API } from '../constants';
 import { IIntermediateAccount, IValidateAccount } from '../interfaces/IAccount';
 import { IDomain } from '../interfaces/IDomain';

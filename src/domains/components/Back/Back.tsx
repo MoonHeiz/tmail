@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import * as S from './StyledBack';
 
 interface IBackProps {
@@ -5,11 +6,13 @@ interface IBackProps {
 }
 
 export const Back: React.VFC<IBackProps> = ({ to }) => {
+  const { t } = useTranslation();
+
   return (
     <S.BackContainer>
       <S.LinkBack to={to}>
         <S.LeftArrow />
-        Back
+        {t('back')}
       </S.LinkBack>
     </S.BackContainer>
   );

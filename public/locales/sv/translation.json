@@ -1,0 +1,22 @@
+{
+  "back": "tillbaka",
+  "emailClipboard": "Din tillfälliga e-postadress, klicka för att kopiera till Urklipp!",
+  "emptyMessages": "Glöm skräppost, reklamutskick, hackning och attackerande robotar. Håll din riktiga brevlåda ren och säker. Temp Mail tillhandahåller tillfällig, säker, anonym, gratis, engångs-e-postadress.",
+  "emailField": "E-post",
+  "passwordField": "Lösenord",
+  "downloadBtn": "Hämtar",
+  "printBtn": "Trycka",
+  "deleteBtn": "Ta bort",
+  "sourceLink": "Källan",
+  "loginTitle": "Logga in",
+  "loginSubtitle": "Här kan du logga in på ditt konto",
+  "loginSubmit": "Logga in",
+  "registerTitle": "Registrera dig",
+  "registerSubmit": "Registrera dig",
+  "miniAccountCustomAccount": "Anpassat konto",
+  "miniAccountLogin": "Logga in",
+  "miniAccountSignOut": "Logga ut",
+  "miniAccountDelete": "Ta bort konto",
+  "source": "Källan",
+  "inbox": "Inkorg"
+}
