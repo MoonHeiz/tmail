@@ -9,7 +9,6 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
     fallbackLng: 'en',
     detection: {
       order: ['queryString', 'localStorage'],

@@ -6,7 +6,7 @@ import { store } from './domains/store/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<h1>Loading</h1>}>
+    <Suspense fallback={<></>}>
       <Provider store={store}>
         <App />
       </Provider>
