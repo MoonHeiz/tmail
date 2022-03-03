@@ -29,7 +29,7 @@ export const CopyIcon = styled(Icon)`
   background-image: url(${copyIcon});
 `;
 
-export const EmailField = styled.input.attrs({ type: 'email', readonly: 'readonly' })`
+export const EmailField = styled.input`
   height: 100%;
   cursor: pointer;
   background-color: transparent;
@@ -40,5 +40,11 @@ export const EmailField = styled.input.attrs({ type: 'email', readonly: 'readonl
 
   &:focus {
     outline: none !important;
+  }
+
+  @media (max-width: 390px) {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;

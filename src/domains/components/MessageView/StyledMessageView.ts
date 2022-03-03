@@ -50,6 +50,10 @@ export const Controls = styled.div`
     justify-content: space-between;
     gap: 10px;
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const SubjectPreview = styled.h2`

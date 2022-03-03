@@ -25,7 +25,12 @@ export const Email: React.VFC = () => {
     <S.Email onClick={copyEmailHandler} role="button">
       {!showCopyIcon && <S.EmailIcon />}
       {showCopyIcon && <S.CopyIcon />}
-      <S.EmailField defaultValue={account!.address} title={t('emailClipboard')}></S.EmailField>
+      <S.EmailField
+        defaultValue={account!.address}
+        type="email"
+        title={t('emailClipboard')}
+        readOnly={true}
+      ></S.EmailField>
     </S.Email>
   );
 };
